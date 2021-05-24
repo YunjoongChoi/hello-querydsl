@@ -1,6 +1,7 @@
 package com.practice.helloquerydsl.board.service;
 
 import com.practice.helloquerydsl.board.dto.BoardDto;
+import com.practice.helloquerydsl.board.mapper.BoardMapper;
 import com.practice.helloquerydsl.board.repository.BoardRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -12,14 +13,21 @@ import java.util.List;
 @AllArgsConstructor
 public class BoardServiceImpl implements BoardService{
     private final BoardRepository boardRepository;
+    private final BoardMapper boardMapper;
 
     @Override
     public List<BoardDto> getBoards(BoardDto param, Pageable pageable) {
-        return null;
+        return boardMapper.toDto(boardRepository.findAll(pageable));
     }
 
     @Override
     public BoardDto getBoard(BoardDto param) {
+        return boardMapper.toDto(boardRepository.findById(param.getId())
+                                                                .orElse(null));
+    }
+
+    @Override
+    public List<BoardDto> dynamicQuery(BoardDto param, Pageable pageable) {
         return null;
     }
 }
