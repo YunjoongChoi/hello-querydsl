@@ -9,5 +9,4 @@ public interface BoardService {
     List<BoardDto> getBoards(BoardDto param, Pageable pageable);
     BoardDto getBoard(BoardDto param);
     List<BoardDto> findByWriter(BoardDto param);
-    List<BoardDto> getBoardsDynamically(BoardDto param, Pageable pageable);
 }

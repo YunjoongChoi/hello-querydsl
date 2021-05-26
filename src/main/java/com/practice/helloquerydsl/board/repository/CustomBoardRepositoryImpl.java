@@ -2,10 +2,6 @@ package com.practice.helloquerydsl.board.repository;
 
 import com.practice.helloquerydsl.board.dto.BoardDto;
 import com.practice.helloquerydsl.board.entity.Board;
-//3. 2를 static import하여 사용하는 방법
-import static com.practice.helloquerydsl.board.entity.QBoard.board;
-
-import com.practice.helloquerydsl.board.entity.QBoard;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.AllArgsConstructor;
@@ -15,6 +11,8 @@ import org.springframework.util.StringUtils;
 
 import java.util.List;
 
+import static com.practice.helloquerydsl.board.entity.QBoard.board;
+
 @Repository
 @AllArgsConstructor
 public class CustomBoardRepositoryImpl implements CustomBoardRepository{
@@ -22,11 +20,6 @@ public class CustomBoardRepositoryImpl implements CustomBoardRepository{
 
     @Override
     public List<Board> findByWriter(String name) {
-        //1. Alias 직접 지정하는 방법
-        QBoard board1 = new QBoard("alias");
-        //2. 인스턴스 사용
-        QBoard board2 = QBoard.board;
-
         return query.selectFrom(board)
                     .where(board.writer.eq(name))
                     .orderBy(board.writer.desc())
@@ -49,6 +42,8 @@ public class CustomBoardRepositoryImpl implements CustomBoardRepository{
 
         return query.selectFrom(board)
                     .where(booleanBuilder)
+                    .limit(pageable.getPageSize())
+                    .offset(pageable.getOffset())
                     .fetch();
     }
 }

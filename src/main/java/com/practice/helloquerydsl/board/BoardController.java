@@ -34,9 +34,4 @@ public class BoardController {
     public List<BoardDto> queryDsl(final BoardDto param){
         return boardService.findByWriter(param);
     }
-
-    @GetMapping({"/dynamic"})
-    public List<BoardDto> dynamic(final BoardDto param, final Pageable pageable){
-        return boardService.getBoardsDynamically(param, pageable);
-    }
 }
