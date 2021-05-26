@@ -3,6 +3,7 @@ package com.practice.helloquerydsl.board.repository;
 import com.practice.helloquerydsl.board.dto.BoardDto;
 import com.practice.helloquerydsl.board.entity.Board;
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -40,7 +41,15 @@ public class CustomBoardRepositoryImpl implements CustomBoardRepository{
             booleanBuilder.and(board.content.contains(param.getContent()));
         }
 
-        return query.selectFrom(board)
+        return query.select(Projections.fields(Board.class
+                            , board.id
+                            , board.title
+                            , board.content
+                            , board.writer
+                            , board.articleType
+                            , board.registDateTime
+                            , board.updateDateTime))
+                    .from(board)
                     .where(booleanBuilder)
                     .limit(pageable.getPageSize())
                     .offset(pageable.getOffset())
