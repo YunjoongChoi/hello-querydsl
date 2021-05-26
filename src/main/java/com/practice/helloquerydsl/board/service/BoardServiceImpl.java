@@ -1,6 +1,7 @@
 package com.practice.helloquerydsl.board.service;
 
 import com.practice.helloquerydsl.board.dto.BoardDto;
+import com.practice.helloquerydsl.board.entity.Board;
 import com.practice.helloquerydsl.board.mapper.BoardMapper;
 import com.practice.helloquerydsl.board.repository.BoardRepository;
 import lombok.AllArgsConstructor;
@@ -27,7 +28,14 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public List<BoardDto> dynamicQuery(BoardDto param, Pageable pageable) {
-        return null;
+    public List<BoardDto> findByWriter(BoardDto param) {
+         List<Board> entities = boardRepository.findByWriter(param.getWriter());
+         List<BoardDto> dtos = boardMapper.toDto(entities);
+         return dtos;
+    }
+
+    @Override
+    public List<BoardDto> getBoardsDynamically(BoardDto param, Pageable pageable) {
+        return boardMapper.toDto(boardRepository.getBoardsDynamically(param, pageable));
     }
 }

@@ -1,6 +1,7 @@
 package com.practice.helloquerydsl.board;
 
 import com.practice.helloquerydsl.board.dto.BoardDto;
+import com.practice.helloquerydsl.board.entity.Board;
 import com.practice.helloquerydsl.board.service.BoardService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -19,16 +20,23 @@ public class BoardController {
 
     @GetMapping
     public List<BoardDto> getBoards(final BoardDto param, final Pageable pageable){
-        return null;
+        return boardService.getBoards(param, pageable);
     }
 
     @GetMapping({"/{id}"})
     public BoardDto getBoard(@PathVariable final Long id){
-        return null;
+        return boardService.getBoard(BoardDto.builder()
+                                            .id(id)
+                                            .build());
+    }
+
+    @GetMapping({"/queryDsl"})
+    public List<BoardDto> queryDsl(final BoardDto param){
+        return boardService.findByWriter(param);
     }
 
     @GetMapping({"/dynamic"})
-    public List<BoardDto> dynamic(final BoardDto param){
-        return null;
+    public List<BoardDto> dynamic(final BoardDto param, final Pageable pageable){
+        return boardService.getBoardsDynamically(param, pageable);
     }
 }

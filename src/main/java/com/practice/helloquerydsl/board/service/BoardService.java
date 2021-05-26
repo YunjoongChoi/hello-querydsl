@@ -8,5 +8,6 @@ import java.util.List;
 public interface BoardService {
     List<BoardDto> getBoards(BoardDto param, Pageable pageable);
     BoardDto getBoard(BoardDto param);
-    List<BoardDto> dynamicQuery(BoardDto param, Pageable pageable);
+    List<BoardDto> findByWriter(BoardDto param);
+    List<BoardDto> getBoardsDynamically(BoardDto param, Pageable pageable);
 }
