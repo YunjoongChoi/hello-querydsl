@@ -3,8 +3,8 @@ server:
 
 spring:
   datasource:
-    driver-class-name: org.h2.Driver
     url: jdbc:h2:mem:hello-querydsl;
+    driver-class-name: org.h2.Driver
     username: abc
     password: abc
   h2:
@@ -13,3 +13,5 @@ spring:
       enabled: true
   jpa:
     show-sql: true
+    hibernate:
+      ddl-auto: none
