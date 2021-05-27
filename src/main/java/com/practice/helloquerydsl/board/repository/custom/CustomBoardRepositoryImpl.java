@@ -51,8 +51,9 @@ public class CustomBoardRepositoryImpl implements CustomBoardRepository{
                             , board.updateDateTime))
                     .from(board)
                     .where(booleanBuilder)
-                    .limit(pageable.getPageSize())
                     .offset(pageable.getOffset())
+                    .limit(pageable.getPageSize())
+                    .orderBy(board.id.asc(), board.updateDateTime.desc())
                     .fetch();
     }
 }
