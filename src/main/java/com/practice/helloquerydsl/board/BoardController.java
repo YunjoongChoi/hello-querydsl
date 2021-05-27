@@ -5,10 +5,7 @@ import com.practice.helloquerydsl.board.entity.Board;
 import com.practice.helloquerydsl.board.service.BoardService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,7 +15,8 @@ import java.util.List;
 public class BoardController {
     private final BoardService boardService;
 
-    @GetMapping
+//    @GetMapping
+    @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST})
     public List<BoardDto> getBoards(final BoardDto param, final Pageable pageable){
         return boardService.getBoards(param, pageable);
     }
