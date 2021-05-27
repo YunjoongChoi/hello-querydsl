@@ -1,4 +1,4 @@
-package com.practice.helloquerydsl.board.repository;
+package com.practice.helloquerydsl.board.repository.custom;
 
 import com.practice.helloquerydsl.board.dto.BoardDto;
 import com.practice.helloquerydsl.board.entity.Board;
