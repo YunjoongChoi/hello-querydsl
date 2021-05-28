@@ -17,7 +17,16 @@ public class BoardServiceImpl implements BoardService{
     private final BoardMapper boardMapper;
 
     @Override
+    public List<BoardDto> getAll(BoardDto param, Pageable pageable) {
+        return boardMapper.toDto(boardRepository.findAll(pageable));
+    }
+
+    @Override
     public List<BoardDto> getBoards(BoardDto param, Pageable pageable) {
+        List<Board> test = boardRepository.getBoardsDynamically(param, pageable);
+        List<BoardDto> test2 = boardMapper.toDto(test);
+
+
         return boardMapper.toDto(boardRepository.getBoardsDynamically(param, pageable));
     }
 
@@ -25,10 +34,5 @@ public class BoardServiceImpl implements BoardService{
     public BoardDto getBoard(BoardDto param) {
         return boardMapper.toDto(boardRepository.findById(param.getId())
                                                                 .orElse(null));
-    }
-
-    @Override
-    public List<BoardDto> findByWriter(BoardDto param) {
-        return boardMapper.toDto(boardRepository.findByWriter(param.getWriter()));
     }
 }

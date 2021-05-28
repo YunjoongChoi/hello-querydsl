@@ -5,4 +5,10 @@ CREATE TABLE BOARD (id BIGINT AUTO_INCREMENT
                     , article_Type VARCHAR
                     , regist_Date_Time TIMESTAMP
                     , update_Date_Time TIMESTAMP
+                    , user_idx BIGINT
                     , PRIMARY KEY (id));
+
+CREATE TABLE USER (user_idx BIGINT AUTO_INCREMENT
+                    , user_Id VARCHAR
+                    , nickname VARCHAR
+                    , PRIMARY KEY (USER_IDX));

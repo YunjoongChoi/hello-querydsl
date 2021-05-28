@@ -1,6 +1,7 @@
 package com.practice.helloquerydsl.board.entity;
 
 import com.practice.helloquerydsl.board.type.ArticleType;
+import com.practice.helloquerydsl.user.entity.User;
 import lombok.*;
 
 import javax.persistence.*;
@@ -28,4 +29,7 @@ public class Board {
     private LocalDateTime registDateTime;
     @Column
     private LocalDateTime updateDateTime;
+    @OneToOne
+    @JoinColumn(name = "USER_IDX")
+    private User user;
 }

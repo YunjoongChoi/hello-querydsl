@@ -15,6 +15,11 @@ import java.util.List;
 public class BoardController {
     private final BoardService boardService;
 
+    @GetMapping("/all")
+    public List<BoardDto> getAll(final BoardDto param, final Pageable pageable){
+        return boardService.getAll(param, pageable);
+    }
+
 //    @GetMapping
     @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST})
     public List<BoardDto> getBoards(final BoardDto param, final Pageable pageable){
@@ -26,10 +31,5 @@ public class BoardController {
         return boardService.getBoard(BoardDto.builder()
                                             .id(id)
                                             .build());
-    }
-
-    @GetMapping({"/queryDsl"})
-    public List<BoardDto> queryDsl(final BoardDto param){
-        return boardService.findByWriter(param);
     }
 }
