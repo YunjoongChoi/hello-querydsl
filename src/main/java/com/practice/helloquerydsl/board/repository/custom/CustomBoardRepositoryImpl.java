@@ -34,6 +34,13 @@ public class CustomBoardRepositoryImpl implements CustomBoardRepository{
         if(StringUtils.hasText(param.getContent())){
             booleanBuilder.and(board.content.contains(param.getContent()));
         }
+        if(param.getFrom()!=null && param.getTo()==null) {
+            booleanBuilder.and(board.registDateTime.after(param.getFrom()));
+        }else if(param.getFrom()==null && param.getTo()!=null){
+            booleanBuilder.and(board.registDateTime.before(param.getTo()));
+        }else if(param.getFrom()!=null && param.getTo()!=null){
+            booleanBuilder.and(board.registDateTime.between(param.getFrom(), param.getTo()));
+        }
 
         return query/*.select(Projections.fields(Board.class
                             , board.id
