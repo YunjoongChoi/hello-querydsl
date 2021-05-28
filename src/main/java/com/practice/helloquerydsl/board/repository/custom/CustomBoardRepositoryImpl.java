@@ -23,24 +23,7 @@ public class CustomBoardRepositoryImpl implements CustomBoardRepository{
 
     @Override
     public List<Board> getBoardsDynamically(BoardDto param, Pageable pageable) {
-        BooleanBuilder booleanBuilder = new BooleanBuilder();
-
-        if(StringUtils.hasLength(param.getWriter())){
-            booleanBuilder.and(board.writer.eq(param.getWriter()));
-        }
-        if(StringUtils.hasText(param.getTitle())){
-            booleanBuilder.and(board.title.contains(param.getTitle()));
-        }
-        if(StringUtils.hasText(param.getContent())){
-            booleanBuilder.and(board.content.contains(param.getContent()));
-        }
-        if(param.getFrom()!=null && param.getTo()==null) {
-            booleanBuilder.and(board.registDateTime.after(param.getFrom()));
-        }else if(param.getFrom()==null && param.getTo()!=null){
-            booleanBuilder.and(board.registDateTime.before(param.getTo()));
-        }else if(param.getFrom()!=null && param.getTo()!=null){
-            booleanBuilder.and(board.registDateTime.between(param.getFrom(), param.getTo()));
-        }
+        BooleanBuilder booleanBuilder = getBoardsDynamicallyBuilder(param);
 
         return query/*.select(Projections.fields(Board.class
                             , board.id
@@ -62,5 +45,28 @@ public class CustomBoardRepositoryImpl implements CustomBoardRepository{
                     .limit(pageable.getPageSize())
                     .orderBy(board.id.asc(), board.updateDateTime.desc())
                     .fetch();
+    }
+
+    private BooleanBuilder getBoardsDynamicallyBuilder(BoardDto param){
+        BooleanBuilder booleanBuilder = new BooleanBuilder();
+
+        if(StringUtils.hasLength(param.getWriter())){
+            booleanBuilder.and(board.writer.eq(param.getWriter()));
+        }
+        if(StringUtils.hasText(param.getTitle())){
+            booleanBuilder.and(board.title.contains(param.getTitle()));
+        }
+        if(StringUtils.hasText(param.getContent())){
+            booleanBuilder.and(board.content.contains(param.getContent()));
+        }
+        if(param.getFrom()!=null && param.getTo()==null) {
+            booleanBuilder.and(board.registDateTime.after(param.getFrom()));
+        }else if(param.getFrom()==null && param.getTo()!=null){
+            booleanBuilder.and(board.registDateTime.before(param.getTo()));
+        }else if(param.getFrom()!=null && param.getTo()!=null){
+            booleanBuilder.and(board.registDateTime.between(param.getFrom(), param.getTo()));
+        }
+
+        return booleanBuilder;
     }
 }
