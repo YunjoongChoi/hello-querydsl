@@ -1,6 +1,6 @@
 package com.practice.helloquerydsl.user.entity;
 
-import com.practice.helloquerydsl.common.entity.BaseTimeEntity;
+import com.practice.helloquerydsl.common.entity.CommonDateTimeEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class User extends BaseTimeEntity {
+public class User extends CommonDateTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userIdx;
