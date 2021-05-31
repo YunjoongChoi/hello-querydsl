@@ -11,6 +11,7 @@
 - `QueryDsl`
 - `QueryDsl BooleanBuilder`를 이용한 동적 쿼리
 - `QueryDsl`을 이용한 Join
+- `JPA Auditing`
 - `JUnit 5` 테스트 코드 및 `Spring REST Docs`
 
 # 작업사항
