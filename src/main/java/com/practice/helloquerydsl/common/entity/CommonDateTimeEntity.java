@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @EntityListeners(AuditingEntityListener.class)
 public abstract class CommonDateTimeEntity {
     @CreatedDate
-    @Column
+    @Column(updatable = false)
     private LocalDateTime registDateTime;
     @LastModifiedDate
     @Column

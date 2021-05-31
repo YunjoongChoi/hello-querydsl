@@ -15,4 +15,7 @@ public class UserDto {
     private String nickname;
     private LocalDateTime registDateTime;
     private LocalDateTime updateDateTime;
+
+    private LocalDateTime from;
+    private LocalDateTime to;
 }
