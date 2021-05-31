@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public ResponseEntity<UserDto> getUser(UserDto param) {
-        return new ResponseEntity<>(userMapper.toDto(userRepository.findById(param.getId())
+        return new ResponseEntity<>(userMapper.toDto(userRepository.findById(param.getUserIdx())
                                                                     .orElse(null)), HttpStatus.OK);
     }
 }

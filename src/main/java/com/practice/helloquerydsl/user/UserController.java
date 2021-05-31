@@ -26,7 +26,7 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<UserDto> getUser(@PathVariable Long id){
         return userService.getUser(UserDto.builder()
-                                                .id(id)
+                                                .userIdx(id)
                                             .build());
     }
 }
