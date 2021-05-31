@@ -23,16 +23,12 @@ public class BoardServiceImpl implements BoardService{
 
     @Override
     public List<BoardDto> getBoards(BoardDto param, Pageable pageable) {
-        List<Board> test = boardRepository.getBoardsDynamically(param, pageable);
-        List<BoardDto> test2 = boardMapper.toDto(test);
-
-
         return boardMapper.toDto(boardRepository.getBoardsDynamically(param, pageable));
     }
 
     @Override
     public BoardDto getBoard(BoardDto param) {
         return boardMapper.toDto(boardRepository.findById(param.getId())
-                                                                .orElse(null));
+                                                 .orElse(null));
     }
 }

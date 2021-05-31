@@ -29,7 +29,7 @@ public class BoardController {
     @GetMapping({"/{id}"})
     public BoardDto getBoard(@PathVariable final Long id){
         return boardService.getBoard(BoardDto.builder()
-                                            .id(id)
-                                            .build());
+                                                .id(id)
+                                             .build());
     }
 }

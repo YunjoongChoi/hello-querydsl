@@ -50,15 +50,22 @@ public class CustomBoardRepositoryImpl implements CustomBoardRepository{
     private BooleanBuilder getBoardsDynamicallyBuilder(BoardDto param){
         BooleanBuilder booleanBuilder = new BooleanBuilder();
 
+         /*writer*/
         if(StringUtils.hasLength(param.getWriter())){
             booleanBuilder.and(board.writer.eq(param.getWriter()));
         }
+
+        /*title*/
         if(StringUtils.hasText(param.getTitle())){
             booleanBuilder.and(board.title.contains(param.getTitle()));
         }
+
+        /*content*/
         if(StringUtils.hasText(param.getContent())){
             booleanBuilder.and(board.content.contains(param.getContent()));
         }
+
+        /*registdatetime*/
         if(param.getFrom()!=null && param.getTo()==null) {
             booleanBuilder.and(board.registDateTime.after(param.getFrom()));
         }else if(param.getFrom()==null && param.getTo()!=null){
