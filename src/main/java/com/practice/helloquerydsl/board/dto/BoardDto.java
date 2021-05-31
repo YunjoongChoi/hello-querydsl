@@ -2,7 +2,7 @@ package com.practice.helloquerydsl.board.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.practice.helloquerydsl.board.type.ArticleType;
-import com.practice.helloquerydsl.user.entity.User;
+import com.practice.helloquerydsl.user.dto.UserDto;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -25,7 +25,7 @@ public class BoardDto {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     private LocalDateTime updateDateTime;
-    private User user;
+    private UserDto user;
 
     private String searchTarget;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
