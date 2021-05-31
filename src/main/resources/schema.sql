@@ -11,4 +11,6 @@ CREATE TABLE BOARD (id BIGINT AUTO_INCREMENT
 CREATE TABLE USER (user_idx BIGINT AUTO_INCREMENT
                     , user_Id VARCHAR
                     , nickname VARCHAR
+                    , regist_Date_Time TIMESTAMP
+                    , update_Date_Time TIMESTAMP
                     , PRIMARY KEY (USER_IDX));
