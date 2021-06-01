@@ -14,3 +14,11 @@ CREATE TABLE USER (user_idx BIGINT AUTO_INCREMENT
                     , regist_Date_Time TIMESTAMP
                     , update_Date_Time TIMESTAMP
                     , PRIMARY KEY (USER_IDX));
+
+CREATE TABLE BOARD_COMMENT (board_Comment_Idx BIGINT AUTO_INCREMENT
+                            , board_idx BIGINT
+                            , user_idx BIGINT
+                            , content VARCHAR
+                            , regist_Date_Time TIMESTAMP
+                            , update_Date_Time TIMESTAMP
+                            , PRIMARY KEY (board_Comment_Idx));

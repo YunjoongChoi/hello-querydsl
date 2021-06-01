@@ -25,4 +25,9 @@ VALUES ('제목1', '내용1', '작성자1', 'SPORTS', '2020-01-01 00:30:00', '20
      , ('제목24', '내용24', '작성자24', 'OTHER', '2020-01-01 00:30:00', '2020-01-01 00:30:00', 1)
      , ('제목25', '내용25', '작성자25', 'SPORTS', '2020-01-01', '2020-01-01', 1);
 
-INSERT INTO USER (USER_ID, NICKNAME, regist_Date_Time, update_Date_Time) VALUES ('아이디1', '닉네임1', '2020-01-01', '2021-12-12 00:00:00');
+INSERT INTO USER (USER_ID, NICKNAME, regist_Date_Time, update_Date_Time)
+VALUES ('아이디1', '닉네임1', '2020-01-01', '2021-12-12 00:00:00');
+
+INSERT INTO BOARD_COMMENT (BOARD_IDX, USER_IDX, CONTENT)
+VALUES (1, 1, '댓글1')
+        , (1, 1, '댓글2');
